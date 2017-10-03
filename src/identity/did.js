@@ -1,10 +1,11 @@
 import * as driver from 'bigchaindb-driver' // eslint-disable-line
 import clone from 'clone'
 import { userDidTemplate, thingDidTemplate } from './didTemplate'
+import config from '../config'
 
 export default function createDid(didType = '') {
     // TODO: Find a better way to add id in DDO for BDB
-    // For now, skipping the id property and usingB BDB asset id instead
+    // For now, skipping the id property and using BDB asset id instead
     // ddo.id = did
 
     let ddo
@@ -12,6 +13,7 @@ export default function createDid(didType = '') {
         ddo = clone(userDidTemplate)
     } else if (didType === 'thing') {
         ddo = clone(thingDidTemplate)
+        ddo.guardian = config.admin.publicKey
     } else {
         throw new Error('Invalid type passed')
     }

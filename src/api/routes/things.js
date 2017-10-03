@@ -34,7 +34,6 @@ router.post('/', async (ctx) => {
         optionalLedgers = qs.ledger.split(',')
     }
 
-    let result = {}
     try {
         log.debug('parsing request')
         // parse request body as per oem and message type
@@ -43,7 +42,7 @@ router.post('/', async (ctx) => {
         log.debug('starting transaction workflow')
 
         // invoke workflow with all ledgers
-        result = await workflow(payload.asset, payload.metadata, optionalLedgers)
+        const result = await workflow(payload.asset, payload.metadata, optionalLedgers)
         payload.id = result
         log.debug('transaction workflow completed')
         ctx.body = payload
