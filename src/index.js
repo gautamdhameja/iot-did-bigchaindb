@@ -5,14 +5,14 @@ import app from './server'
 (
     async () => {
         try {
-            console.log('Initializing')
+            // console.log('Initializing')
             // await initialize(config.bdb.host) // one time only
         } catch (ex) {
             console.error(ex)
         }
 
         app.listen(config.server.port, () => {
-            console.log(`App started on port ${config.server.port} 
+            console.log(`API started on port ${config.server.port} 
             with environment ${config.environment}`)
         })
     }

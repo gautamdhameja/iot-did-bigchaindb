@@ -1,24 +1,32 @@
-const didTemplate = {
-    '@context': '',
-    'id': '',
-    'guardian': 'did:bdb:1234-5678-9012-3456',
+const userDidTemplate = {
+    '@context': 'http://schema.bdb.did.user',
     'owner': [{
-        'id': '',
+        'id': '#key-1',
         'type': [
             'CryptographicKey',
-            'RsaPublicKey'
+            'EdDsaPublicKey'
         ],
-        'expires': '2017-06-12T11:34:33.387Z',
-        'publicKeyBase64': '5PMAtEZ46LahCLmQxH6DTYmBidaWwB97g9ZnbFFBPoRg'
+        'expires': '',
+        'publicKeyBase58': ''
     }],
     'created': '',
     'updated': '',
-    'signature': {
-        'type': '',
-        'created': '',
-        'creator': '',
-        'signatureValue': ''
-    }
 }
 
-export default didTemplate
+const thingDidTemplate = {
+    '@context': 'http://schema.bdb.did.thing',
+    'guardian': '',
+    'owner': [{
+        'id': '#key-1',
+        'type': [
+            'CryptographicKey',
+            'EdDsaPublicKey'
+        ],
+        'expires': '',
+        'publicKeyBase58': ''
+    }],
+    'created': '',
+    'updated': '',
+}
+
+export { userDidTemplate, thingDidTemplate }

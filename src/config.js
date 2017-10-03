@@ -35,7 +35,7 @@ const config = Object.freeze({
         port: process.env.NODE_PORT || process.env.PORT || 3000
     },
     'bdb': {
-        host: process.env.BDB_SERVER_URL || 'http://localhost:29984/api/v1/',
+        host: process.env.BDB_SERVER_URL || 'http://localhost:49984/api/v1/',
     },
     'iota': {
         host: process.env.IOTA_SERVER_URL || 'http://node02.iotatoken.nl:14265/'

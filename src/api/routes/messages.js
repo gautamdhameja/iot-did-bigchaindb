@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 import workflow from '../../controllers/workflow'
 import _log from '../../utils/logger'
-import requestParser from '../requestParsers/messagesParser'
+import requestParser from '../business/messageService'
 
 const log = _log(module)
 
@@ -34,17 +34,11 @@ router.post('/', async (ctx) => {
         optionalLedgers = qs.ledger.split(',')
     }
 
-    // get message type, if specified
-    let messageType = ''
-    if (qs.type) {
-        messageType = qs.type
-    }
-
     const result = []
     try {
         log.debug('parsing request')
         // parse request body as per oem and message type
-        const payloads = await requestParser(body, messageType)
+        const payloads = await requestParser(body)
         log.debug(payloads)
 
         log.debug('starting transaction workflow')

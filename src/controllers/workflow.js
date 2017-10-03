@@ -33,7 +33,7 @@ export default async function Workflow(asset, metadata, optionalLedgers = []) {
     }
 
     log.info(bdbTx)
-    return bdbTx
+    return bdbTx.id
 }
 
 function getLedgerConnections(optionalLedgers) {

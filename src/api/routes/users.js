@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 import workflow from '../../controllers/workflow'
 import _log from '../../utils/logger'
-import requestParser from '../requestParsers/didParser'
+import requestParser from '../business/userService'
 
 const log = _log(module)
 
@@ -37,16 +37,15 @@ router.post('/', async (ctx) => {
     let result = {}
     try {
         log.debug('parsing request')
-        // parse request body as per oem and message type
         const payload = requestParser(body)
 
         log.debug('starting transaction workflow')
 
         // invoke workflow with all ledgers
         result = await workflow(payload.asset, payload.metadata, optionalLedgers)
-
+        payload.id = result
         log.debug('transaction workflow completed')
-        ctx.body = result
+        ctx.body = payload
         ctx.status = 200
     } catch (error) {
         log.error(error)
